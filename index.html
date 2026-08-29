@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ডাক্তারের কাছে যাওয়ার ভোগান্তি | প্রতিকার ও প্রতিরোধ</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        bengali: ['Noto Sans Bengali', 'Inter', 'sans-serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#050505',
+                            darker: '#0a0a0a',
+                            card: '#171717',
+                            green: '#006847',
+                            red: '#CC0000',
+                            text: '#f5f5f4',
+                            muted: '#a8a29e',
+                            border: 'rgba(255,255,255,0.1)',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Noto Sans Bengali', 'Inter', sans-serif;
+            background: #050505;
+            color: #f5f5f4;
+            overflow-x: hidden;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #006847; border-radius: 3px; }
+
+        /* Grid Background */
+        .grid-bg {
+            background-size: 50px 50px;
+            background-image:
+                linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+            mask-image: linear-gradient(to bottom, transparent 5%, black 40%, black 70%, transparent 95%);
+        }
+
+        /* Animations */
+        @keyframes clipInUp {
+            0% {
+                clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%);
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            100% {
+                clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        @keyframes fadeInUp {
+            0% { transform: translateY(30px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @keyframes scaleIn {
+            0% { transform: scale(0.9); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(0,104,71,0.3); }
+            50% { box-shadow: 0 0 40px rgba(0,104,71,0.6); }
+        }
+        @keyframes countUp {
+            0% { transform: translateY(100%); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes slideRight {
+            0% { transform: translateX(-100%); opacity: 0; }
+            100% { transform: translateX(0); opacity: 1; }
+        }
+
+        .animate-clip { animation: clipInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) both; }
+        .animate-fade-up { animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
+        .animate-fade { animation: fadeIn 1s ease both; }
+        .animate-scale { animation: scaleIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
+        .delay-700 { animation-delay: 0.7s; }
+        .delay-800 { animation-delay: 0.8s; }
+
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero gradient text */
+        .hero-text-gradient {
+            background: linear-gradient(to bottom, #f5f5f4 0%, #a8a29e 60%, #57534e 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Green glow */
+        .green-glow {
+            text-shadow: 0 0 30px rgba(0,104,71,0.5);
+        }
+
+        /* Card hover */
+        .problem-card {
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .problem-card:hover {
+            border-color: rgba(204,0,0,0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        .problem-card:hover .card-icon {
+            transform: scale(1.1);
+            color: #CC0000;
+        }
+        .card-icon {
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .solution-card {
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .solution-card:hover {
+            border-color: rgba(0,104,71,0.4);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        .solution-card:hover .sol-icon {
+            transform: scale(1.1);
+            color: #006847;
+        }
+        .sol-icon {
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Prevention card */
+        .prev-card {
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .prev-card:hover {
+            border-color: rgba(0,104,71,0.3);
+            background: rgba(0,104,71,0.05);
+        }
+
+        /* FAQ */
+        .faq-item {
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+        }
+        .faq-item:hover {
+            border-color: rgba(0,104,71,0.2);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s ease;
+        }
+        .faq-answer.open {
+            max-height: 500px;
+        }
+        .faq-chevron {
+            transition: transform 0.3s ease;
+        }
+        .faq-chevron.rotated {
+            transform: rotate(180deg);
+        }
+
+        /* Cost bar animation */
+        .cost-bar {
+            transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+            width: 0%;
+        }
+        .cost-bar.animated {
+            /* width set inline */
+        }
+
+        /* Stat counter */
+        .stat-number {
+            background: linear-gradient(135deg, #006847, #22c55e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Nav blur */
+        .nav-blur {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+        }
+
+        /* Badge */
+        .badge-glow {
+            box-shadow: 0 0 10px rgba(0,104,71,0.2);
+        }
+
+        /* Image hover */
+        .img-hover {
+            filter: grayscale(100%);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .img-hover:hover {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        /* Toast */
+        .toast {
+            transform: translateX(120%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        /* Progress ring */
+        .progress-ring-circle {
+            transition: stroke-dashoffset 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+
+        /* Marquee */
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .marquee-track {
+            animation: marquee 30s linear infinite;
+        }
+
+        /* Section divider */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+        }
+
+        /* Smooth scroll */
+        html { scroll-behavior: smooth; }
+
+        /* CTA Button */
+        .cta-btn {
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+            transition: left 0.5s ease;
+        }
+        .cta-btn:hover::before {
+            left: 100%;
+        }
+
+        /* Tab active */
+        .tab-btn.active {
+            background: #006847;
+            color: white;
+            border-color: #006847;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast fixed top-20 right-4 z-[100] bg-brand-card border border-brand-green/30 rounded-lg p-4 flex items-center gap-3 max-w-sm">
+        <span class="iconify text-brand-green text-xl" data-icon="mdi:check-circle"></span>
+        <span id="toastMsg" class="text-sm text-brand-text">বার্তা পাঠানো হয়েছে!</span>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 px-4 md:px-6 py-3 nav-blur bg-brand-dark/80 border-b border-white/5">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-8 h-8 rounded-lg bg-brand-green flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <span class="iconify text-white text-lg" data-icon="mdi:stethoscope"></span>
+                </div>
+                <span class="text-lg font-bold tracking-tight">স্বাস্থ্য<span class="text-brand-green">সেবা</span></span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#problems" class="text-sm text-brand-muted hover:text-white transition-colors duration-300">ভোগান্তি</a>
+                <a href="#costs" class="text-sm text-brand-muted hover:text-white transition-colors duration-300">খরচ বিশ্লেষণ</a>
+                <a href="#solutions" class="text-sm text-brand-muted hover:text-white transition-colors duration-300">প্রতিকার</a>
+                <a href="#prevention" class="text-sm text-brand-muted hover:text-white transition-colors duration-300">প্রতিরোধ</a>
+                <a href="#faq" class="text-sm text-brand-muted hover:text-white transition-colors duration-300">প্রশ্নোত্তর</a>
+            </div>
+
+            <div class="hidden md:flex items-center gap-3">
+                <a href="#emergency" class="px-4 py-2 text-xs font-bold uppercase tracking-widest border border-brand-red/50 text-brand-red rounded hover:bg-brand-red/10 transition-all duration-300">
+                    জরুরি নম্বর
+                </a>
+                <a href="#solutions" class="px-4 py-2 text-xs font-bold uppercase tracking-widest bg-brand-green text-white rounded hover:bg-brand-green/80 transition-all duration-300">
+                    সমাধান দেখুন
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button id="menuToggle" class="md:hidden w-10 h-10 flex items-center justify-center rounded-lg border border-white/10 hover:border-white/20 transition-colors">
+                <span class="iconify text-xl" data-icon="mdi:menu" id="menuIcon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="mobile-menu fixed top-0 right-0 bottom-0 w-72 z-[60] bg-brand-darker/95 backdrop-blur-xl border-l border-white/5 p-6">
+        <div class="flex justify-end mb-8">
+            <button id="menuClose" class="w-10 h-10 flex items-center justify-center rounded-lg border border-white/10 hover:border-white/20 transition-colors">
+                <span class="iconify text-xl" data-icon="mdi:close"></span>
+            </button>
+        </div>
+        <div class="flex flex-col gap-4">
+            <a href="#problems" class="mobile-link text-base text-brand-muted hover:text-white py-2 border-b border-white/5 transition-colors">ভোগান্তি</a>
+            <a href="#costs" class="mobile-link text-base text-brand-muted hover:text-white py-2 border-b border-white/5 transition-colors">খরচ বিশ্লেষণ</a>
+            <a href="#solutions" class="mobile-link text-base text-brand-muted hover:text-white py-2 border-b border-white/5 transition-colors">প্রতিকার</a>
+            <a href="#prevention" class="mobile-link text-base text-brand-muted hover:text-white py-2 border-b border-white/5 transition-colors">প্রতিরোধ</a>
+            <a href="#faq" class="mobile-link text-base text-brand-muted hover:text-white py-2 border-b border-white/5 transition-colors">প্রশ্নোত্তর</a>
+            <a href="#emergency" class="mt-4 px-4 py-3 text-center text-sm font-bold uppercase tracking-widest border border-brand-red/50 text-brand-red rounded hover:bg-brand-red/10 transition-all">জরুরি নম্বর</a>
+        </div>
+    </div>
+    <div id="menuOverlay" class="fixed inset-0 z-[55] bg-black/60 hidden"></div>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden">
+        <!-- Background -->
+        <div class="absolute inset-0 grid-bg"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-brand-dark via-transparent to-brand-dark"></div>
+
+        <!-- Floating Icons -->
+        <div class="absolute top-1/4 left-[10%] animate-float opacity-10">
+            <span class="iconify text-5xl text-brand-red" data-icon="mdi:hospital-building"></span>
+        </div>
+        <div class="absolute top-1/3 right-[15%] animate-float delay-300 opacity-10">
+            <span class="iconify text-4xl text-brand-green" data-icon="mdi:pill"></span>
+        </div>
+        <div class="absolute bottom-1/3 left-[20%] animate-float delay-500 opacity-10">
+            <span class="iconify text-6xl text-brand-red" data-icon="mdi:currency-bdt"></span>
+        </div>
+        <div class="absolute bottom-1/4 right-[10%] animate-float delay-700 opacity-10">
+            <span class="iconify text-5xl text-brand-green" data-icon="mdi:heart-pulse"></span>
+        </div>
+
+        <div class="relative z-10 text-center max-w-5xl mx-auto">
+            <!-- Badge -->
+            <div class="animate-fade-up inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand-green/20 bg-brand-green/5 mb-8 badge-glow">
+                <span class="w-2 h-2 rounded-full bg-brand-green animate-pulse"></span>
+                <span class="text-xs font-medium tracking-wider uppercase text-brand-green">বাংলাদেশের স্বাস্থ্য ব্যবস্থা</span>
+            </div>
+
+            <!-- Main Heading -->
+            <h1 class="animate-clip text-4xl md:text-6xl lg:text-7xl font-black leading-[0.9] tracking-tighter mb-6">
+                <span class="hero-text-gradient">ডাক্তারের কাছে</span><br>
+                <span class="hero-text-gradient">যাওয়ার</span>
+                <span class="text-brand-red green-glow" style="text-shadow: 0 0 30px rgba(204,0,0,0.4);"> ভোগান্তি</span>
+            </h1>
+
+            <!-- Sub heading -->
+            <p class="animate-fade-up delay-200 text-base md:text-lg text-brand-muted max-w-2xl mx-auto leading-relaxed mb-4">
+                সাধারণ মানুষের চিকিৎসা খরচ, লম্বা লাইন, অনিয়ম ও হয়রানির বাস্তব চিত্র — এবং এর থেকে মুক্তির উপায়
+            </p>
+
+            <!-- Mini Stats -->
+            <div class="animate-fade-up delay-300 flex flex-wrap justify-center gap-6 md:gap-10 mt-8 mb-10">
+                <div class="text-center">
+                    <div class="text-2xl md:text-3xl font-black stat-number" id="stat1">০</div>
+                    <div class="text-xs text-brand-muted mt-1">কোটি মানুষ ভুক্তভোগী</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-2xl md:text-3xl font-black stat-number" id="stat2">০</div>
+                    <div class="text-xs text-brand-muted mt-1">% পকেট খরচ বহন করে</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-2xl md:text-3xl font-black stat-number" id="stat3">০</div>
+                    <div class="text-xs text-brand-muted mt-1">ঘণ্টা গড় অপেক্ষা</div>
+                </div>
+            </div>
+
+            <!-- CTA Buttons -->
+            <div class="animate-fade-up delay-400 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#problems" class="cta-btn group px-8 py-3.5 bg-brand-green text-white text-sm font-bold uppercase tracking-widest rounded hover:bg-brand-green/90 transition-all duration-300 flex items-center gap-2">
+                    ভোগান্তি দেখুন
+                    <span class="iconify text-lg group-hover:translate-x-1 transition-transform" data-icon="mdi:arrow-down"></span>
+                </a>
+                <a href="#solutions" class="px-8 py-3.5 border border-white/10 text-brand-text text-sm font-bold uppercase tracking-widest rounded hover:border-white/30 hover:bg-white/5 transition-all duration-300">
+                    সমাধান জানুন
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-fade delay-800">
+            <div class="flex flex-col items-center gap-2">
+                <span class="text-[10px] tracking-widest uppercase text-brand-muted">স্ক্রল করুন</span>
+                <div class="w-5 h-8 rounded-full border border-white/20 flex justify-center pt-1.5">
+                    <div class="w-1 h-2 bg-brand-green rounded-full animate-bounce"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marquee Section -->
+    <div class="relative py-4 border-y border-white/5 overflow-hidden bg-brand-darker/50">
+        <div class="marquee-track flex items-center gap-8 whitespace-nowrap">
+            <span class="text-sm text-brand-muted/50 flex items-center gap-2"><span class="iconify text-brand-red" data-icon="mdi:alert-circle"></span> ভিজিট ফি বৃদ্ধি</span>
+            <span class="text-sm text-brand-muted/50">●</span>
+            <span class="text-sm text-brand-muted/50 flex items-center gap-2"><span class="iconify text-brand-red" data-icon="mdi:clock-alert"></span> দীর্ঘ অপেক্ষা</span>
+            <span class="text-sm text-brand-muted/50">●</span>
+            <span class="text-sm text-brand-muted/50 flex items-center gap-2"><span class="iconify text-brand-red" data-icon="mdi:test-tube"></span> অবাঞ্ছিত টেস্ট</span>
+            <span class="text-sm text-brand-muted/50">●</span>
+            <span class="text-sm text-brand-muted/50 flex items-center gap-2"><span class="iconify text-brand-red" data-icon="mdi:pill"></span> বেশি দামের ওষুধ</span>
+            <span class="text-sm text-brand-muted/50">●</span>
+            <span class="text-sm text-brand-muted/50 flex items-center gap-2"><span class="iconify text-brand-red" data-icon="mdi:account-group"></span> ভিড়</span>
+            <span class="text-sm text-brand-muted/50">●</span>
+            <span class="text-sm text-brand-muted/50 flex items-center gap-2"><span class="iconify text-brand-red" data-icon="mdi:calendar-remove"></span> সিরিয়াল সংকট</span>
+            <span class="text-sm text-brand-muted/50">●</span>
+            <span class="text-sm text-brand-muted/50 flex items-center gap-2"><span class="iconify text-brand-red" data-icon="mdi:cash-remove"></span> টাকার অভাবে চিকিৎসা বন্ধ</span>
+            <span class="text-sm text-brand-muted/50">●</span>
+            <!-- Duplicate for seamless loop -->
+            <span class="text-sm text-brand-muted/50 flex items-center gap-2"><span class="iconify text-brand-red" data-icon="mdi:alert-circle"></span> ভিজিট ফি বৃদ্ধি</span>
+            <span class="text-sm text-brand-muted/50">●</span>
+            <span class="text-sm text-brand-muted/50 flex items-center gap-2"><span class="iconify text-brand-red" data-icon="mdi:clock-alert"></span> দীর্ঘ অপেক্ষা</span>
+            <span class="text-sm text-brand-muted/50">●</span>
+            <span class="text-sm text-brand-muted/50 flex items-center gap-2"><span class="iconify text-brand-red" data-icon="mdi:test-tube"></span> অবাঞ্ছিত টেস্ট</span>
+            <span class="text-sm text-brand-muted/50">●</span>
+            <span class="text-sm text-brand-muted/50 flex items-center gap-2"><span class="iconify text-brand-red" data-icon="mdi:pill"></span> বেশি দামের ওষুধ</span>
+            <span class="text-sm text-brand-muted/50">●</span>
+            <span class="text-sm text-brand-muted/50 flex items-center gap-2"><span class="iconify text-brand-red" data-icon="mdi:account-group"></span> ভিড়</span>
+            <span class="text-sm text-brand-muted/50">●</span>
+            <span class="text-sm text-brand-muted/50 flex items-center gap-2"><span class="iconify text-brand-red" data-icon="mdi:calendar-remove"></span> সিরিয়াল সংকট</span>
+            <span class="text-sm text-brand-muted/50">●</span>
+            <span class="text-sm text-brand-muted/50 flex items-center gap-2"><span class="iconify text-brand-red" data-icon="mdi:cash-remove"></span> টাকার অভাবে চিকিৎসা বন্ধ</span>
+            <span class="text-sm text-brand-muted/50">●</span>
+        </div>
+    </div>
+
+    <!-- Problems Section -->
+    <section id="problems" class="relative py-20 md:py-32 px-4">
+        <div class="max-w-7xl mx-auto">
+            <!-- Section Header -->
+            <div class="text-center mb-16 reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-brand-red/20 bg-brand-red/5 mb-6">
+                    <span class="iconify text-brand-red text-sm" data-icon="mdi:alert-outline"></span>
+                    <span class="text-[10px] font-medium tracking-widest uppercase text-brand-red">সমস্যা চিহ্নিতকরণ</span>
+                </div>
+                <h2 class="text-3xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-[0.95] mb-4">
+                    <span class="hero-text-gradient">মূল ভোগান্তিসমূহ</span>
+                </h2>
+                <p class="text-sm md:text-base text-brand-muted max-w-xl mx-auto">বাংলাদেশে সাধারণ রোগীদের যে ৮টি প্রধান সমস্যার সম্মুখীন হতে হয়</p>
+            </div>
+
+            <!-- Problem Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Card 1 -->
+                <div class="problem-card rounded-xl bg-brand-card p-6 reveal">
+                    <div class="card-icon w-12 h-12 rounded-lg bg-brand-red/10 flex items-center justify-center mb-4">
+                        <span class="iconify text-2xl text-brand-red" data-icon="mdi:cash-minus"></span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">অতিরিক্ত ভিজিট ফি</h3>
+                    <p class="text-sm text-brand-muted leading-relaxed">সাধারণ চিকিৎসকের ভিজিট ৫০০-১৫০০ টাকা, বিশেষজ্ঞের ১০০০-৫০০০ টাকা। অনেক ক্ষেত্রে নির্ধারিত ফির চেয়ে বেশি নেওয়া হয়।</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="problem-card rounded-xl bg-brand-card p-6 reveal" style="transition-delay:0.1s">
+                    <div class="card-icon w-12 h-12 rounded-lg bg-brand-red/10 flex items-center justify-center mb-4">
+                        <span class="iconify text-2xl text-brand-red" data-icon="mdi:clock-alert-outline"></span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">দীর্ঘ অপেক্ষা</h3>
+                    <p class="text-sm text-brand-muted leading-relaxed">সিরিয়াল থাকলেও ২-৫ ঘণ্টা অপেক্ষা করতে হয়। বিশেষজ্ঞদের ক্ষেত্রে তো সপ্তাহ পর্যন্ত অপেক্ষা।</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="problem-card rounded-xl bg-brand-card p-6 reveal" style="transition-delay:0.2s">
+                    <div class="card-icon w-12 h-12 rounded-lg bg-brand-red/10 flex items-center justify-center mb-4">
+                        <span class="iconify text-2xl text-brand-red" data-icon="mdi:test-tube-empty"></span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">অনাকাঙ্ক্ষিত টেস্ট</h3>
+                    <p class="text-sm text-brand-muted leading-relaxed">প্রয়োজনের অতিরিক্ত বিভিন্ন টেস্ট করতে বলা হয়। কমিশনের কারণে নির্দিষ্ট ল্যাবে পাঠানো হয় রোগী।</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="problem-card rounded-xl bg-brand-card p-6 reveal" style="transition-delay:0.3s">
+                    <div class="card-icon w-12 h-12 rounded-lg bg-brand-red/10 flex items-center justify-center mb-4">
+                        <span class="iconify text-2xl text-brand-red" data-icon="mdi:pill"></span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">ব্র্যান্ডেড ওষুধ</h3>
+                    <p class="text-sm text-brand-muted leading-relaxed">সস্তা জেনেরিক ওষুধ থাকলেও ব্র্যান্ডেড ও দামি ওষুধ লিখে দেওয়া হয়। ফলে ওষুধ খরচ দ্বিগুণ-তিনগুণ বেড়ে যায়।</p>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="problem-card rounded-xl bg-brand-card p-6 reveal">
+                    <div class="card-icon w-12 h-12 rounded-lg bg-brand-red/10 flex items-center justify-center mb-4">
+                        <span class="iconify text-2xl text-brand-red" data-icon="mdi:hospital-box-outline"></span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">হাসপাতালের ভিড়</h3>
+                    <p class="text-sm text-brand-muted leading-relaxed">সরকারি হাসপাতালে রোগীর তুলনায় চিকিৎসকের সংখ্যা অত্যন্ত কম। একজন ডাক্তারকে ঘণ্টায় শতাধিক রোগী দেখতে হয়।</p>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="problem-card rounded-xl bg-brand-card p-6 reveal" style="transition-delay:0.1s">
+                    <div class="card-icon w-12 h-12 rounded-lg bg-brand-red/10 flex items-center justify-center mb-4">
+                        <span class="iconify text-2xl text-brand-red" data-icon="mdi:map-marker-off-outline"></span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">গ্রামে চিকিৎসকের অভাব</h3>
+                    <p class="text-sm text-brand-muted leading-relaxed">উপজেলা স্বাস্থ্য কমপ্লেক্সে বিশেষজ্ঞ চিকিৎসক নেই। গ্রামীণ মানুষকে জেলা বা বিভাগীয় শহরে আসতে হয়।</p>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="problem-card rounded-xl bg-brand-card p-6 reveal" style="transition-delay:0.2s">
+                    <div class="card-icon w-12 h-12 rounded-lg bg-brand-red/10 flex items-center justify-center mb-4">
+                        <span class="iconify text-2xl text-brand-red" data-icon="mdi:file-document-remove-outline"></span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">রেকর্ড রাখার অভাব</h3>
+                    <p class="text-sm text-brand-muted leading-relaxed">রোগীর মেডিকেল রেকর্ড সংরক্ষণের কোনো ব্যবস্থা নেই। প্রতিবার নতুন করে টেস্ট করতে হয়, খরচ বাড়ে।</p>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="problem-card rounded-xl bg-brand-card p-6 reveal" style="transition-delay:0.3s">
+                    <div class="card-icon w-12 h-12 rounded-lg bg-brand-red/10 flex items-center justify-center mb-4">
+                        <span class="iconify text-2xl text-brand-red" data-icon="mdi:emoticon-sad-outline"></span>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">রোগীর অসম্মান</h3>
+                    <p class="text-sm text-brand-muted leading-relaxed">চিকিৎসকদের অনেকে রোগীর সাথে খারাপ ব্যবহার করেন। প্রশ্ন করলে রেগে যাওয়ার ঘটনাও ঘটে।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- Cost Analysis Section -->
+    <section id="costs" class="relative py-20 md:py-32 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <!-- Left: Content -->
+                <div class="reveal">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-brand-red/20 bg-brand-red/5 mb-6">
+                        <span class="iconify text-brand-red text-sm" data-icon="mdi:chart-bar"></span>
+                        <span class="text-[10px] font-medium tracking-widest uppercase text-brand-red">খরচ বিশ্লেষণ</span>
+                    </div>
+                    <h2 class="text-3xl md:text-5xl font-black tracking-tighter leading-[0.95] mb-6">
+                        <span class="hero-text-gradient">একটি সাধারণ ভিজিটে<br>কত খরচ?</span>
+                    </h2>
+                    <p class="text-sm md:text-base text-brand-muted leading-relaxed mb-8">
+                        বাংলাদেশে একজন সাধারণ রোগীর একবার ডাক্তার দেখাতে গড়ে যা খরচ হয়, তা অনেকের মাসিক আয়ের এক তৃতীয়াংশ। নিচে বিস্তারিত খরচের চিত্র দেওয়া হলো।
+                    </p>
+
+                    <!-- Cost Items -->
+                    <div class="space-y-5">
+                        <div class="cost-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm font-medium">ভিজিট ফি (সাধারণ চিকিৎসক)</span>
+                                <span class="text-sm font-bold text-brand-red">৫০০ - ১,৫০০ ৳</span>
+                            </div>
+                            <div class="h-2 bg-white/5 rounded-full overflow-hidden">
+                                <div class="cost-bar h-full bg-gradient-to-r from-brand-red/70 to-brand-red rounded-full" data-width="40%"></div>
+                            </div>
+                        </div>
+                        <div class="cost-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm font-medium">ভিজিট ফি (বিশেষজ্ঞ)</span>
+                                <span class="text-sm font-bold text-brand-red">১,০০০ - ৫,০০০ ৳</span>
+                            </div>
+                            <div class="h-2 bg-white/5 rounded-full overflow-hidden">
+                                <div class="cost-bar h-full bg-gradient-to-r from-brand-red/70 to-brand-red rounded-full" data-width="70%"></div>
+                            </div>
+                        </div>
+                        <div class="cost-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm font-medium">টেস্ট (রক্ত, প্রস্রাব ইত্যাদি)</span>
+                                <span class="text-sm font-bold text-brand-red">৫০০ - ৩,০০০ ৳</span>
+                            </div>
+                            <div class="h-2 bg-white/5 rounded-full overflow-hidden">
+                                <div class="cost-bar h-full bg-gradient-to-r from-brand-red/70 to-brand-red rounded-full" data-width="55%"></div>
+                            </div>
+                        </div>
+                        <div class="cost-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm font-medium">ওষুধ (এক সপ্তাহ)</span>
+                                <span class="text-sm font-bold text-brand-red">৩০০ - ২,০০০ ৳</span>
+                            </div>
+                            <div class="h-2 bg-white/5 rounded-full overflow-hidden">
+                                <div class="cost-bar h-full bg-gradient-to-r from-brand-red/70 to-brand-red rounded-full" data-width="45%"></div>
+                            </div>
+                        </div>
+                        <div class="cost-item">
+                            <div class="flex justify-between mb-2">
+                                <span class="text-sm font-medium">যাতায়াত ও অন্যান্য</span>
+                                <span class="text-sm font-bold text-brand-red">২০০ - ১,০০০ ৳</span>
+                            </div>
+                            <div class="h-2 bg-white/5 rounded-full overflow-hidden">
+                                <div class="cost-bar h-full bg-gradient-to-r from-brand-red/70 to-brand-red rounded-full" data-width="25%"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 p-4 rounded-lg bg-brand-red/5 border border-brand-red/20">
+                        <div class="flex items-center gap-3">
+                            <span class="iconify text-2xl text-brand-red" data-icon="mdi:calculator"></span>
+                            <div>
+                                <div class="text-sm font-bold text-brand-red">মোট গড় খরচ: ২,৫০০ - ১২,৫০০ ৳</div>
+                                <div class="text-xs text-brand-muted mt-0.5">যা দিনমজুরের ৫-২৫ দিনের আয়ের সমান</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Image + Info -->
+                <div class="reveal" style="transition-delay:0.2s">
+                    <div class="relative rounded-2xl overflow-hidden">
+                        <img src="https://picsum.photos/seed/bangladesh-hospital-crowd/600/700.jpg" alt="হাসপাতালের ভিড়" class="w-full h-[400px] md:h-[500px] object-cover img-hover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/30 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6">
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="bg-brand-dark/80 backdrop-blur-sm rounded-lg p-3 border border-white/10">
+                                    <div class="text-2xl font-black text-brand-red">৬৭%</div>
+                                    <div class="text-[10px] text-brand-muted mt-1">মানুষ ঋণ করে চিকিৎসা করে</div>
+                                </div>
+                                <div class="bg-brand-dark/80 backdrop-blur-sm rounded-lg p-3 border border-white/10">
+                                    <div class="text-2xl font-black text-brand-red">৫৩%</div>
+                                    <div class="text-[10px] text-brand-muted mt-1">সম্পদ বিক্রি করতে হয়</div>
+                                </div>
+                                <div class="bg-brand-dark/80 backdrop-blur-sm rounded-lg p-3 border border-white/10">
+                                    <div class="text-2xl font-black text-brand-red">৭২%</div>
+                                    <div class="text-[10px] text-brand-muted mt-1">ওষুধ কিনতে পায় না</div>
+                                </div>
+                                <div class="bg-brand-dark/80 backdrop-blur-sm rounded-lg p-3 border border-white/10">
+                                    <div class="text-2xl font-black text-brand-red">৪৪%</div>
+                                    <div class="text-[10px] text-brand-muted mt-1">চিকিৎসা ছেড়ে দেয়</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- Solutions / প্রতিকার Section -->
+    <section id="solutions" class="relative py-20 md:py-32 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-brand-green/20 bg-brand-green/5 mb-6">
+                    <span class="iconify text-brand-green text-sm" data-icon="mdi:lightbulb-on-outline"></span>
+                    <span class="text-[10px] font-medium tracking-widest uppercase text-brand-green">প্রতিকার</span>
+                </div>
+                <h2 class="text-3xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-[0.95] mb-4">
+                    <span class="hero-text-gradient">ভোগান্তি থেকে মুক্তির</span><br>
+                    <span class="text-brand-green green-glow">বাস্তব উপায়</span>
+                </h2>
+                <p class="text-sm md:text-base text-brand-muted max-w-2xl mx-auto">এই সমস্যাগুলো সমাধান করার জন্য ব্যক্তিগত ও সামষ্টিক উভয় পর্যায়ে কী কী করা যায়</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="flex justify-center mb-12 reveal">
+                <div class="inline-flex gap-2 p-1.5 bg-brand-card rounded-xl border border-white/5">
+                    <button class="tab-btn active px-5 py-2.5 text-xs font-bold uppercase tracking-widest rounded-lg border border-transparent transition-all duration-300" data-tab="personal">ব্যক্তিগত</button>
+                    <button class="tab-btn px-5 py-2.5 text-xs font-bold uppercase tracking-widest rounded-lg border border-transparent text-brand-muted hover:text-white transition-all duration-300" data-tab="collective">সামষ্টিক</button>
+                </div>
+            </div>
+
+            <!-- Personal Solutions -->
+            <div id="tab-personal" class="tab-content">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="solution-card rounded-xl bg-brand-card p-6 reveal">
+                        <div class="sol-icon w-12 h-12 rounded-lg bg-brand-green/10 flex items-center justify-center mb-4">
+                            <span class="iconify text-2xl text-brand-green" data-icon="mdi:hospital-building"></span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">সরকারি হাসপাতাল ব্যবহার</h3>
+                        <p class="text-sm text-brand-muted leading-relaxed">উপজেলা স্বাস্থ্য কমপ্লেক্স, জেলা হাসপাতাল ও মেডিকেল কলেজ হাসপাতালে বিনামূল্যে চিকিৎসা পাওয়া যায়। আউটডোরে ভিজিট ফি নেই।</p>
+                        <div class="mt-4 flex items-center gap-2 text-brand-green text-xs font-medium">
+                            <span class="iconify" data-icon="mdi:check-circle"></span>
+                            সম্পূর্ণ বিনামূল্যে
+                        </div>
+                    </div>
+
+                    <div class="solution-card rounded-xl bg-brand-card p-6 reveal" style="transition-delay:0.1s">
+                        <div class="sol-icon w-12 h-12 rounded-lg bg-brand-green/10 flex items-center justify-center mb-4">
+                            <span class="iconify text-2xl text-brand-green" data-icon="mdi:home-city"></span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">কমিউনিটি ক্লিনিক</h3>
+                        <p class="text-sm text-brand-muted leading-relaxed">প্রায় ১৪,০০০ কমিউনিটি ক্লিনিকে প্রাথমিক চিকিৎসা, টিকা ও মাতৃস্বাস্থ্য সেবা বিনামূল্যে দেওয়া হয়।</p>
+                        <div class="mt-4 flex items-center gap-2 text-brand-green text-xs font-medium">
+                            <span class="iconify" data-icon="mdi:check-circle"></span>
+                            ঘরের কাছে সেবা
+                        </div>
+                    </div>
+
+                    <div class="solution-card rounded-xl bg-brand-card p-6 reveal" style="transition-delay:0.2s">
+                        <div class="sol-icon w-12 h-12 rounded-lg bg-brand-green/10 flex items-center justify-center mb-4">
+                            <span class="iconify text-2xl text-brand-green" data-icon="mdi:phone-in-talk"></span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">টেলিমেডিসিন সেবা</h3>
+                        <p class="text-sm text-brand-muted leading-relaxed">৩৩৩, ১৬২৬৩, স্বাস্থ্য অধিদপ্তরের হটলাইনে কল করে বিনামূল্যে চিকিৎসকের পরামর্শ নেওয়া যায়।</p>
+                        <div class="mt-4 flex items-center gap-2 text-brand-green text-xs font-medium">
+                            <span class="iconify" data-icon="mdi:check-circle"></span>
+                            ঘরে বসে সেবা
+                        </div>
+                    </div>
+
+                    <div class="solution-card rounded-xl bg-brand-card p-6 reveal">
+                        <div class="sol-icon w-12 h-12 rounded-lg bg-brand-green/10 flex items-center justify-center mb-4">
+                            <span class="iconify text-2xl text-brand-green" data-icon="mdi:shield-check"></span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">স্বাস্থ্য বীমা</h3>
+                        <p class="text-sm text-brand-muted leading-relaxed">গ্রামীণ বীমা, পপুলার লাইফের মতো স্বল্পমূল্যের স্বাস্থ্য বীমা নিলে হাসপাতালে ভর্তির খরচ কমানো যায়।</p>
+                        <div class="mt-4 flex items-center gap-2 text-brand-green text-xs font-medium">
+                            <span class="iconify" data-icon="mdi:check-circle"></span>
+                            মাসিক ২০০-৫০০ টাকা থেকে
+                        </div>
+                    </div>
+
+                    <div class="solution-card rounded-xl bg-brand-card p-6 reveal" style="transition-delay:0.1s">
+                        <div class="sol-icon w-12 h-12 rounded-lg bg-brand-green/10 flex items-center justify-center mb-4">
+                            <span class="iconify text-2xl text-brand-green" data-icon="mdi:card-account-details-outline"></span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">জেনেরিক ওষুধ চাওয়া</h3>
+                        <p class="text-sm text-brand-muted leading-relaxed">ফার্মেসিতে জেনেরিক নাম বলে ওষুধ কিনুন। এতে ওষুধের খরচ ৫০%-৭০% পর্যন্ত কমানো সম্ভব।</p>
+                        <div class="mt-4 flex items-center gap-2 text-brand-green text-xs font-medium">
+                            <span class="iconify" data-icon="mdi:check-circle"></span>
+                            অর্ধেক দামে একই ওষুধ
+                        </div>
+                    </div>
+
+                    <div class="solution-card rounded-xl bg-brand-card p-6 reveal" style="transition-delay:0.2s">
+                        <div class="sol-icon w-12 h-12 rounded-lg bg-brand-green/10 flex items-center justify-center mb-4">
+                            <span class="iconify text-2xl text-brand-green" data-icon="mdi:file-document-check-outline"></span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">মেডিকেল রেকর্ড রাখুন</h3>
+                        <p class="text-sm text-brand-muted leading-relaxed">প্রেসক্রিপশন, টেস্ট রিপোর্ট সংরক্ষণ করুন। পুরনো রিপোর্ট দেখালে একই টেস্ট বারবার করতে হবে না।</p>
+                        <div class="mt-4 flex items-center gap-2 text-brand-green text-xs font-medium">
+                            <span class="iconify" data-icon="mdi:check-circle"></span>
+                            পুনরায় টেস্ট এড়ান
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Collective Solutions -->
+            <div id="tab-collective" class="tab-content hidden">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="solution-card rounded-xl bg-brand-card p-6 reveal active">
+                        <div class="sol-icon w-12 h-12 rounded-lg bg-brand-green/10 flex items-center justify-center mb-4">
+                            <span class="iconify text-2xl text-brand-green" data-icon="mdi:gavel"></span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">ভিজিট ফি নিয়ন্ত্রণ</h3>
+                        <p class="text-sm text-brand-muted leading-relaxed">সরকারকে বেসরকারি ক্লিনিক ও হাসপাতালের ভিজিট ফি নির্ধারণ ও নিয়ন্ত্রণ করতে হবে। অতিরিক্ত ফি নিলে শাস্তির বিধান থাকতে হবে।</p>
+                    </div>
+
+                    <div class="solution-card rounded-xl bg-brand-card p-6 reveal active" style="transition-delay:0.1s">
+                        <div class="sol-icon w-12 h-12 rounded-lg bg-brand-green/10 flex items-center justify-center mb-4">
+                            <span class="iconify text-2xl text-brand-green" data-icon="mdi:account-supervisor"></span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">চিকিৎসক বৃদ্ধি</h3>
+                        <p class="text-sm text-brand-muted leading-relaxed">বিশ্ব স্বাস্থ্য সংস্থার মান অনুযায়ী প্রতি ১০,০০০ মানুষে ১ জন ডাক্তার দরকার। বর্তমানে তা অর্ধেক। মেডিকেল শিক্ষা সম্প্রসারণ জরুরি।</p>
+                    </div>
+
+                    <div class="solution-card rounded-xl bg-brand-card p-6 reveal active" style="transition-delay:0.2s">
+                        <div class="sol-icon w-12 h-12 rounded-lg bg-brand-green/10 flex items-center justify-center mb-4">
+                            <span class="iconify text-2xl text-brand-green" data-icon="mdi:monitor-cellphone"></span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">ডিজিটাল স্বাস্থ্য ব্যবস্থা</h3>
+                        <p class="text-sm text-brand-muted leading-relaxed">জাতীয় স্বাস্থ্য কার্ড, অনলাইন সিরিয়াল, ই-হেলথ রেকর্ড চালু করলে ভোগান্তি অনেক কমবে।</p>
+                    </div>
+
+                    <div class="solution-card rounded-xl bg-brand-card p-6 reveal active">
+                        <div class="sol-icon w-12 h-12 rounded-lg bg-brand-green/10 flex items-center justify-center mb-4">
+                            <span class="iconify text-2xl text-brand-green" data-icon="mdi:cash-multiple"></span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">স্বাস্থ্য বাজেট বৃদ্ধি</h3>
+                        <p class="text-sm text-brand-muted leading-relaxed">জিডিপির ৩% স্বাস্থ্য খাতে বরাদ্দ দেওয়ার প্রতিশ্রুতি রাখতে হবে। বর্তমানে তা মাত্র ০.৯%।</p>
+                    </div>
+
+                    <div class="solution-card rounded-xl bg-brand-card p-6 reveal active" style="transition-delay:0.1s">
+                        <div class="sol-icon w-12 h-12 rounded-lg bg-brand-green/10 flex items-center justify-center mb-4">
+                            <span class="iconify text-2xl text-brand-green" data-icon="mdi:account-check"></span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">চিকিৎসকদের জবাবদিহিতা</h3>
+                        <p class="text-sm text-brand-muted leading-relaxed">অযৌক্তিক টেস্ট ও ব্র্যান্ডেড ওষুধ লিখলে কাউন্সিলে অভিযোগ করার সহজ ব্যবস্থা থাকতে হবে।</p>
+                    </div>
+
+                    <div class="solution-card rounded-xl bg-brand-card p-6 reveal active" style="transition-delay:0.2s">
+                        <div class="sol-icon w-12 h-12 rounded-lg bg-brand-green/10 flex items-center justify-center mb-4">
+                            <span class="iconify text-2xl text-brand-green" data-icon="mdi:tree-outline"></span>
+                        </div>
+                        <h3 class="text-lg font-bold mb-2">গ্রামীণ স্বাস্থ্য অবকাঠামো</h3>
+                        <p class="text-sm text-brand-muted leading-relaxed">উপজেলা পর্যায়ে আধুনিক ল্যাব, বিশেষজ্ঞ চিকিৎসক ও জরুরি সেবা নিশ্চিত করতে হবে।</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- Prevention / প্রতিরোধ Section -->
+    <section id="prevention" class="relative py-20 md:py-32 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-brand-green/20 bg-brand-green/5 mb-6">
+                    <span class="iconify text-brand-green text-sm" data-icon="mdi:shield-heart-outline"></span>
+                    <span class="text-[10px] font-medium tracking-widest uppercase text-brand-green">প্রতিরোধ</span>
+                </div>
+                <h2 class="text-3xl md:text-5xl lg:text-6xl font-black tracking-tighter leading-[0.95] mb-4">
+                    <span class="hero-text-gradient">চিকিৎসকের কাছে যাওয়ার</span><br>
+                    <span class="text-brand-green green-glow">প্রয়োজনই কমান</span>
+                </h2>
+                <p class="text-sm md:text-base text-brand-muted max-w-2xl mx-auto">সঠিক জীবনযাপন ও সচেতনতার মাধ্যমে ৬০%-৭০% রোগ প্রতিরোধ করা সম্ভব</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                <!-- Large card -->
+                <div class="lg:col-span-7 prev-card rounded-2xl bg-brand-card p-8 md:p-10 reveal">
+                    <div class="flex items-start gap-4 mb-6">
+                        <div class="w-14 h-14 rounded-xl bg-brand-green/10 flex items-center justify-center flex-shrink-0">
+                            <span class="iconify text-3xl text-brand-green" data-icon="mdi:food-apple-outline"></span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl md:text-2xl font-bold mb-2">সুষম খাদ্যাভ্যাস</h3>
+                            <p class="text-sm text-brand-muted leading-relaxed">প্রতিদিন পর্যাপ্ত শাকসবজি, ফলমূল, প্রোটিন ও পানি পান করুন। ফাস্টফুড, অতিরিক্ত লবণ ও চিনি এড়িয়ে চলুন।</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                        <div class="text-center p-3 rounded-lg bg-white/[0.03] border border-white/5">
+                            <span class="iconify text-2xl text-brand-green mb-1" data-icon="mdi:water"></span>
+                            <div class="text-xs font-medium">৮ গ্লাস পানি</div>
+                        </div>
+                        <div class="text-center p-3 rounded-lg bg-white/[0.03] border border-white/5">
+                            <span class="iconify text-2xl text-brand-green mb-1" data-icon="mdi:leaf"></span>
+                            <div class="text-xs font-medium">শাকসবজি</div>
+                        </div>
+                        <div class="text-center p-3 rounded-lg bg-white/[0.03] border border-white/5">
+                            <span class="iconify text-2xl text-brand-green mb-1" data-icon="mdi:fruit-cherries"></span>
+                            <div class="text-xs font-medium">ফলমূল</div>
+                        </div>
+                        <div class="text-center p-3 rounded-lg bg-white/[0.03] border border-white/5">
+                            <span class="iconify text-2xl text-brand-green mb-1" data-icon="mdi:egg-outline"></span>
+                            <div class="text-xs font-medium">প্রোটিন</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Small card -->
+                <div class="lg:col-span-5 prev-card rounded-2xl bg-brand-card p-8 md:p-10 reveal flex flex-col justify-between" style="transition-delay:0.1s">
+                    <div>
+                        <div class="w-14 h-14 rounded-xl bg-brand-green/10 flex items-center justify-center mb-4">
+                            <span class="iconify text-3xl text-brand-green" data-icon="mdi:run-fast"></span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">নিয়মিত ব্যায়াম</h3>
+                        <p class="text-sm text-brand-muted leading-relaxed">প্রতিদিন কমপক্ষে ৩০ মিনিট হাঁটুন বা ব্যায়াম করুন। এতে ডায়াবেটিস, উচ্চ রক্তচাপ, হার্ট ডিজিজের ঝুঁকি ৪০%-৫০% কমে।</p>
+                    </div>
+                    <div class="mt-6 flex items-center gap-3 text-brand-green text-sm font-medium">
+                        <span class="iconify text-lg" data-icon="mdi:check-decagram"></span>
+                        প্রতিদিন ৩০ মিনিট = সপ্তাহে ৩.৫ ঘণ্টা
+                    </div>
+                </div>
+
+                <!-- Small card -->
+                <div class="lg:col-span-5 prev-card rounded-2xl bg-brand-card p-8 md:p-10 reveal">
+                    <div class="w-14 h-14 rounded-xl bg-brand-green/10 flex items-center justify-center mb-4">
+                        <span class="iconify text-3xl text-brand-green" data-icon="mdi:sleep"></span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">পর্যাপ্ত ঘুম</h3>
+                    <p class="text-sm text-brand-muted leading-relaxed">প্রাপ্তবয়স্কদের প্রতিদিন ৭-৮ ঘণ্টা ঘুম দরকার। ঘুমের অভাবে ইমিউনিটি কমে, বিভিন্ন রোগের ঝুঁকি বাড়ে।</p>
+                    <div class="mt-4 flex items-center gap-4">
+                        <div class="flex-1 h-2 bg-white/5 rounded-full overflow-hidden">
+                            <div class="h-full bg-brand-green/60 rounded-full" style="width:75%"></div>
+                        </div>
+                        <span class="text-xs text-brand-muted">৭-৮ ঘণ্টা</span>
+                    </div>
+                </div>
+
+                <!-- Large card -->
+                <div class="lg:col-span-7 prev-card rounded-2xl bg-brand-card p-8 md:p-10 reveal" style="transition-delay:0.1s">
+                    <div class="flex items-start gap-4 mb-6">
+                        <div class="w-14 h-14 rounded-xl bg-brand-green/10 flex items-center justify-center flex-shrink-0">
+                            <span class="iconify text-3xl text-brand-green" data-icon="mdi:needle"></span>
+                        </div>
+                        <div>
+                            <h3 class="text-xl md:text-2xl font-bold mb-2">সময়মতো টিকা দিন</h3>
+                            <p class="text-sm text-brand-muted leading-relaxed">শিশুদের ইপিআই টিকা সময়মতো দিন। প্রাপ্তবয়স্কদের হেপাটাইটিস বি, ফ্লু, টিটেনাসের টিকা নিন। হাত ধোয়ার অভ্যাস করুন।</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1.5 text-xs font-medium rounded-full bg-brand-green/10 text-brand-green border border-brand-green/20">বিসিজি</span>
+                        <span class="px-3 py-1.5 text-xs font-medium rounded-full bg-brand-green/10 text-brand-green border border-brand-green/20">ডিপিটি</span>
+                        <span class="px-3 py-1.5 text-xs font-medium rounded-full bg-brand-green/10 text-brand-green border border-brand-green/20">পোলিও</span>
+                        <span class="px-3 py-1.5 text-xs font-medium rounded-full bg-brand-green/10 text-brand-green border border-brand-green/20">এমআর</span>
+                        <span class="px-3 py-1.5 text-xs font-medium rounded-full bg-brand-green/10 text-brand-green border border-brand-green/20">হেপাটাইটিস বি</span>
+                        <span class="px-3 py-1.5 text-xs font-medium rounded-full bg-brand-green/10 text-brand-green border border-brand-green/20">ফ্লু</span>
+                        <span class="px-3 py-1.5 text-xs font-medium rounded-full bg-brand-green/10 text-brand-green border border-brand-green/20">কোভিড</span>
+                    </div>
+                </div>
+
+                <!-- Full width card -->
+                <div class="lg:col-span-12 prev-card rounded-2xl bg-brand-card p-8 md:p-10 reveal">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8">
+                        <div class="flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-brand-green/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <span class="iconify text-xl text-brand-green" data-icon="mdi:smoking-off"></span>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold mb-1">ধূমপান ত্যাগ</h4>
+                                <p class="text-xs text-brand-muted leading-relaxed">ধূমপান থেকে ক্যান্সার, হার্ট অ্যাটাক, স্ট্রোক হয়। ত্যাগ করলে ঝুঁকি ৫০% কমে।</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-brand-green/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <span class="iconify text-xl text-brand-green" data-icon="mdi:glass-wine-off"></span>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold mb-1">মদ্যপান বর্জন</h4>
+                                <p class="text-xs text-brand-muted leading-relaxed">মদ্যপান লিভার সিরোসিস, প্যানক্রিয়াটাইটিস ও মানসিক রোগের কারণ।</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-brand-green/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <span class="iconify text-xl text-brand-green" data-icon="mdi:head-snowflake-outline"></span>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold mb-1">মানসিক স্বাস্থ্য</h4>
+                                <p class="text-xs text-brand-muted leading-relaxed">স্ট্রেস ম্যানেজ করুন। ধ্যান, শখ ও পরিবারের সাথে সময় কাটান।</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-brand-green/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <span class="iconify text-xl text-brand-green" data-icon="mdi:stethoscope-check"></span>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold mb-1">নিয়মিত চেকআপ</h4>
+                                <p class="text-xs text-brand-muted leading-relaxed">বছরে একবার রক্ত পরীক্ষা, বিপি মাপুন। প্রাথমিক অবস্থায় রোগ ধরলে খরচ অনেক কমে।</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- Emergency Section -->
+    <section id="emergency" class="relative py-20 md:py-32 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-12 reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-brand-red/20 bg-brand-red/5 mb-6">
+                    <span class="iconify text-brand-red text-sm" data-icon="mdi:phone-alert"></span>
+                    <span class="text-[10px] font-medium tracking-widest uppercase text-brand-red">জরুরি যোগাযোগ</span>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-black tracking-tighter leading-[0.95] mb-4">
+                    <span class="hero-text-gradient">ফ্রি স্বাস্থ্য সেবার</span><br>
+                    <span class="text-brand-red" style="text-shadow: 0 0 30px rgba(204,0,0,0.3);">জরুরি নম্বর</span>
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <a href="tel:333" class="group solution-card rounded-xl bg-brand-card p-6 flex items-center gap-4 reveal animate-pulse-glow">
+                    <div class="w-14 h-14 rounded-xl bg-brand-green/10 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-green/20 transition-colors">
+                        <span class="iconify text-2xl text-brand-green" data-icon="mdi:phone"></span>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-black text-brand-green">৩৩৩</div>
+                        <div class="text-xs text-brand-muted">জাতীয় কল সেন্টার (স্বাস্থ্য পরামর্শ)</div>
+                    </div>
+                </a>
+
+                <a href="tel:16263" class="group solution-card rounded-xl bg-brand-card p-6 flex items-center gap-4 reveal" style="transition-delay:0.1s">
+                    <div class="w-14 h-14 rounded-xl bg-brand-green/10 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-green/20 transition-colors">
+                        <span class="iconify text-2xl text-brand-green" data-icon="mdi:medical-bag"></span>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-black text-brand-green">১৬২৬৩</div>
+                        <div class="text-xs text-brand-muted">স্বাস্থ্য অধিদপ্তর হটলাইন</div>
+                    </div>
+                </a>
+
+                <a href="tel:999" class="group solution-card rounded-xl bg-brand-card p-6 flex items-center gap-4 reveal" style="transition-delay:0.2s">
+                    <div class="w-14 h-14 rounded-xl bg-brand-red/10 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-red/20 transition-colors">
+                        <span class="iconify text-2xl text-brand-red" data-icon="mdi:ambulance"></span>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-black text-brand-red">৯৯৯</div>
+                        <div class="text-xs text-brand-muted">জরুরি সেবা (অ্যাম্বুলেন্স)</div>
+                    </div>
+                </a>
+
+                <a href="tel:109" class="group solution-card rounded-xl bg-brand-card p-6 flex items-center gap-4 reveal">
+                    <div class="w-14 h-14 rounded-xl bg-brand-green/10 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-green/20 transition-colors">
+                        <span class="iconify text-2xl text-brand-green" data-icon="mdi:woman-pregnant"></span>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-black text-brand-green">১০৯</div>
+                        <div class="text-xs text-brand-muted">মাতৃস্বাস্থ্য হটলাইন</div>
+                    </div>
+                </a>
+
+                <a href="tel:106" class="group solution-card rounded-xl bg-brand-card p-6 flex items-center gap-4 reveal" style="transition-delay:0.1s">
+                    <div class="w-14 h-14 rounded-xl bg-brand-green/10 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-green/20 transition-colors">
+                        <span class="iconify text-2xl text-brand-green" data-icon="mdi:baby-carriage"></span>
+                    </div>
+                    <div>
+                        <div class="text-2xl font-black text-brand-green">১০৬</div>
+                        <div class="text-xs text-brand-muted">শিশু স্বাস্থ্য হটলাইন</div>
+                    </div>
+                </a>
+
+                <a href="tel:09666777222" class="group solution-card rounded-xl bg-brand-card p-6 flex items-center gap-4 reveal" style="transition-delay:0.2s">
+                    <div class="w-14 h-14 rounded-xl bg-brand-green/10 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-green/20 transition-colors">
+                        <span class="iconify text-2xl text-brand-green" data-icon="mdi:hospital-box"></span>
+                    </div>
+                    <div>
+                        <div class="text-lg font-black text-brand-green">০৯৬৬৬৭৭৭২২২</div>
+                        <div class="text-xs text-brand-muted">কুর্মিটোলা জেনারেল হাসপাতাল</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="relative py-20 md:py-32 px-4">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-12 reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-brand-green/20 bg-brand-green/5 mb-6">
+                    <span class="iconify text-brand-green text-sm" data-icon="mdi:frequently-asked-questions"></span>
+                    <span class="text-[10px] font-medium tracking-widest uppercase text-brand-green">প্রশ্নোত্তর</span>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-black tracking-tighter leading-[0.95] mb-4">
+                    <span class="hero-text-gradient">সচরাচর জিজ্ঞাসা</span>
+                </h2>
+            </div>
+
+            <div class="space-y-0 reveal">
+                <div class="faq-item py-5">
+                    <button class="faq-toggle w-full flex items-center justify-between text-left">
+                        <span class="text-sm md:text-base font-medium pr-4">সরকারি হাসপাতালে কি সত্যিই বিনামূল্যে চিকিৎসা পাওয়া যায়?</span>
+                        <span class="iconify faq-chevron text-xl text-brand-muted flex-shrink-0" data-icon="mdi:chevron-down"></span>
+                    </button>
+                    <div class="faq-answer px-0">
+                        <p class="text-sm text-brand-muted leading-relaxed pt-3">হ্যাঁ, সরকারি হাসপাতালের আউটডোরে চিকিৎসক দেখানো সম্পূর্ণ বিনামূল্যে। ওষুধও অনেক ক্ষেত্রে বিনামূল্যে দেওয়া হয়। তবে কিছু বিশেষ টেস্ট ও ভর্তির ক্ষেত্রে সামান্য খরচ হতে পারে। উপজেলা স্বাস্থ্য কমপ্লেক্স ও কমিউনিটি ক্লিনিকে প্রাথমিক চিকিৎসা একদম ফ্রি।</p>
+                    </div>
+                </div>
+
+                <div class="faq-item py-5">
+                    <button class="faq-toggle w-full flex items-center justify-between text-left">
+                        <span class="text-sm md:text-base font-medium pr-4">ডাক্তার অযৌক্তিক টেস্ট করতে বললে কী করব?</span>
+                        <span class="iconify faq-chevron text-xl text-brand-muted flex-shrink-0" data-icon="mdi:chevron-down"></span>
+                    </button>
+                    <div class="faq-answer px-0">
+                        <p class="text-sm text-brand-muted leading-relaxed pt-3">প্রথমে ডাক্তারকে টেস্টের কারণ জিজ্ঞেস করুন। যদি সন্তোষজনক উত্তর না পান, দ্বিতীয় মতামত নিন। অভিযোগ করতে পারেন বাংলাদেশ মেডিকেল অ্যান্ড ডেন্টাল কাউন্সিলে (BMDC): ০২-৫৫০১৩৬৪১। এছাড়া ভোক্তা অধিকার সংরক্ষণ অধিদপ্তরেও অভিযোগ করা যায়।</p>
+                    </div>
+                </div>
+
+                <div class="faq-item py-5">
+                    <button class="faq-toggle w-full flex items-center justify-between text-left">
+                        <span class="text-sm md:text-base font-medium pr-4">জেনেরিক ওষুধ কি ব্র্যান্ডেড ওষুধের মতো কাজ করে?</span>
+                        <span class="iconify faq-chevron text-xl text-brand-muted flex-shrink-0" data-icon="mdi:chevron-down"></span>
+                    </button>
+                    <div class="faq-answer px-0">
+                        <p class="text-sm text-brand-muted leading-relaxed pt-3">হ্যাঁ, জেনেরিক ওষুধে একই মূল উপাদান (active ingredient), একই ডোজ ও একই কার্যকারিতা থাকে। শুধু নাম ও দাম আলাদা। বাংলাদেশে ড্রাগ অ্যাডমিনিস্ট্রেশন জেনেরিক ওষুধের মান নিয়ন্ত্রণ করে। তবে ভালো কোম্পানির জেনেরিক ওষুধ কিনুন।</p>
+                    </div>
+                </div>
+
+                <div class="faq-item py-5">
+                    <button class="faq-toggle w-full flex items-center justify-between text-left">
+                        <span class="text-sm md:text-base font-medium pr-4">টেলিমেডিসিন সেবা কি নির্ভরযোগ্য?</span>
+                        <span class="iconify faq-chevron text-xl text-brand-muted flex-shrink-0" data-icon="mdi:chevron-down"></span>
+                    </button>
+                    <div class="faq-answer px-0">
+                        <p class="text-sm text-brand-muted leading-relaxed pt-3">সাধারণ স্বাস্থ্য সমস্যা, পরামর্শ ও ফলো-আপের জন্য টেলিমেডিসিন বেশ কার্যকর। সরকারি ৩৩৩ নম্বরে ও ১৬২৬৩ নম্বরে যোগ্য চিকিৎসকরা পরামর্শ দেন। তবে জরুরি অবস্থা ও শারীরিক পরীক্ষার প্রয়োজন হলে হাসপাতালে যেতে হবে।</p>
+                    </div>
+                </div>
+
+                <div class="faq-item py-5">
+                    <button class="faq-toggle w-full flex items-center justify-between text-left">
+                        <span class="text-sm md:text-base font-medium pr-4">গরিব রোগীদের জন্য কি কোনো আর্থিক সহায়তা আছে?</span>
+                        <span class="iconify faq-chevron text-xl text-brand-muted flex-shrink-0" data-icon="mdi:chevron-down"></span>
+                    </button>
+                    <div class="faq-answer px-0">
+                        <p class="text-sm text-brand-muted leading-relaxed pt-3">হ্যাঁ, সরকারি হাসপাতালে গরিব রোগীদের জন্য "হাসপাতাল কল্যাণ তহবিল" আছে। এছাড়া সমাজসেবা অধিদপ্তর থেকে চিকিৎসা সহায়তা পাওয়া যায়। বিভিন্ন এনজিও (ব্র্যাক, আশা, গ্রামীণ ইত্যাদি) স্বাস্থ্য সহায়তা দেয়। ক্যান্সার, কিডনি, হার্টের রোগীদের জন্য প্রধানমন্ত্রীর সহায়তা তহবিল আছে।</p>
+                    </div>
+                </div>
+
+                <div class="faq-item py-5">
+                    <button class="faq-toggle w-full flex items-center justify-between text-left">
+                        <span class="text-sm md:text-base font-medium pr-4">কিভাবে সরকারি হাসপাতালে দ্রুত সেবা পাব?</span>
+                        <span class="iconify faq-chevron text-xl text-brand-muted flex-shrink-0" data-icon="mdi:chevron-down"></span>
+                    </button>
+                    <div class="faq-answer px-0">
+                        <p class="text-sm text-brand-muted leading-relaxed pt-3">সকাল সকাল হাসপাতালে যান, সিরিয়াল নিন। আগে থেকে জানুন কোন দিন কোন বিশেষজ্ঞ আসেন। স্বাস্থ্য অধিদপ্তরের ওয়েবসাইটে (dghs.gov.bd) চিকিৎসকদের রুটিন পাওয়া যায়। জরুরি বিভাগে সবসময় চিকিৎসক থাকেন। গুরুতর অবস্থায় জরুরি বিভাগে যান।</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider max-w-5xl mx-auto"></div>
+
+    <!-- CTA / Help Section -->
+    <section class="relative py-20 md:py-32 px-4">
+        <div class="max-w-3xl mx-auto text-center reveal">
+            <div class="relative rounded-2xl bg-brand-card border border-white/5 p-8 md:p-12 overflow-hidden">
+                <!-- Background glow -->
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-brand-green/10 rounded-full blur-3xl"></div>
+
+                <div class="relative z-10">
+                    <span class="iconify text-5xl text-brand-green mb-6 inline-block" data-icon="mdi:hand-heart-outline"></span>
+                    <h2 class="text-2xl md:text-4xl font-black tracking-tighter leading-[0.95] mb-4">
+                        আপনার অভিজ্ঞতা শেয়ার করুন
+                    </h2>
+                    <p class="text-sm text-brand-muted max-w-lg mx-auto mb-8">
+                        ডাক্তারের কাছে যাওয়ার ভোগান্তির কথা লিখে পাঠান। আমরা সেগুলো সংগ্রহ করে সংশ্লিষ্ট কর্তৃপক্ষের কাছে পাঠাবো।
+                    </p>
+
+                    <form id="experienceForm" class="max-w-md mx-auto space-y-4">
+                        <input type="text" placeholder="আপনার নাম (ঐচ্ছিক)" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-sm text-brand-text placeholder-brand-muted/50 focus:outline-none focus:border-brand-green/50 transition-colors">
+                        <input type="text" placeholder="আপনার এলাকা" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-sm text-brand-text placeholder-brand-muted/50 focus:outline-none focus:border-brand-green/50 transition-colors">
+                        <textarea rows="4" placeholder="আপনার ভোগান্তির বিবরণ লিখুন..." class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-sm text-brand-text placeholder-brand-muted/50 focus:outline-none focus:border-brand-green/50 transition-colors resize-none"></textarea>
+                        <button type="submit" class="cta-btn w-full px-8 py-3.5 bg-brand-green text-white text-sm font-bold uppercase tracking-widest rounded-lg hover:bg-brand-green/90 transition-all duration-300">
+                            জমা দিন
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 py-12 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-brand-green flex items-center justify-center">
+                            <span class="iconify text-white text-lg" data-icon="mdi:stethoscope"></span>
+                        </div>
+                        <span class="text-lg font-bold tracking-tight">স্বাস্থ্য<span class="text-brand-green">সেবা</span></span>
+                    </div>
+                    <p class="text-sm text-brand-muted leading-relaxed max-w-sm mb-4">
+                        বাংলাদেশের সাধারণ জনগণের চিকিৎসা ভোগান্তি সম্পর্কে সচেতনতা তৈরি ও সমাধানের উপায় জানানোর জন্য এই ওয়েবসাইটটি তৈরি করা হয়েছে।
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <span class="text-xs text-brand-muted">তথ্যসূত্র:</span>
+                        <span class="text-xs text-brand-muted/70">বিএমএস, ডিজিএইচএস, বিশ্ব স্বাস্থ্য সংস্থা</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold mb-4">দ্রুত লিংক</h4>
+                    <div class="space-y-2">
+                        <a href="#problems" class="block text-sm text-brand-muted hover:text-white transition-colors">ভোগান্তি</a>
+                        <a href="#costs" class="block text-sm text-brand-muted hover:text-white transition-colors">খরচ বিশ্লেষণ</a>
+                        <a href="#solutions" class="block text-sm text-brand-muted hover:text-white transition-colors">প্রতিকার</a>
+                        <a href="#prevention" class="block text-sm text-brand-muted hover:text-white transition-colors">প্রতিরোধ</a>
+                        <a href="#faq" class="block text-sm text-brand-muted hover:text-white transition-colors">প্রশ্নোত্তর</a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-sm font-bold mb-4">গুরুত্বপূর্ণ লিংক</h4>
+                    <div class="space-y-2">
+                        <a href="https://dghs.gov.bd" target="_blank" class="block text-sm text-brand-muted hover:text-white transition-colors">স্বাস্থ্য অধিদপ্তর</a>
+                        <a href="https://www.bmdc.org.bd" target="_blank" class="block text-sm text-brand-muted hover:text-white transition-colors">বিএমডিসি</a>
+                        <a href="https://www.who.int/bangladesh" target="_blank" class="block text-sm text-brand-muted hover:text-white transition-colors">বিশ্ব স্বাস্থ্য সংস্থা</a>
+                        <a href="https://mohfw.gov.bd" target="_blank" class="block text-sm text-brand-muted hover:text-white transition-colors">স্বাস্থ্য মন্ত্রণালয়</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-divider mb-6"></div>
+
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <p class="text-xs text-brand-muted/50">© ২০২৬ স্বাস্থ্যসেবা। সচেতনতার জন্য তৈরি। কোনো বাণিজ্যিক উদ্দেশ্য নেই।</p>
+                <div class="flex items-center gap-1 text-xs text-brand-muted/50">
+                    <span>তৈরি করা হয়েছে</span>
+                    <span class="iconify text-brand-red" data-icon="mdi:heart"></span>
+                    <span>দিয়ে — বাংলাদেশের মানুষের জন্য</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button id="backToTop" class="fixed bottom-6 right-6 z-50 w-10 h-10 rounded-lg bg-brand-green/80 text-white flex items-center justify-center opacity-0 translate-y-4 transition-all duration-300 hover:bg-brand-green" style="pointer-events:none">
+        <span class="iconify text-lg" data-icon="mdi:arrow-up"></span>
+    </button>
+
+    <script>
+        // ===== Mobile Menu =====
+        const menuToggle = document.getElementById('menuToggle');
+        const menuClose = document.getElementById('menuClose');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function openMenu() {
+            mobileMenu.classList.add('open');
+            menuOverlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMenu() {
+            mobileMenu.classList.remove('open');
+            menuOverlay.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        menuToggle.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+        menuOverlay.addEventListener('click', closeMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+        // ===== Scroll Reveal =====
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        revealElements.forEach(el => observer.observe(el));
+
+        // ===== Cost Bar Animation =====
+        const costBars = document.querySelectorAll('.cost-bar');
+        const costObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const bar = entry.target;
+                    bar.style.width = bar.dataset.width;
+                    bar.classList.add('animated');
+                }
+            });
+        }, { threshold: 0.5 });
+
+        costBars.forEach(bar => costObserver.observe(bar));
+
+        // ===== Tab Switching =====
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const tabId = btn.dataset.tab;
+                tabContents.forEach(content => {
+                    content.classList.add('hidden');
+                    if (content.id === `tab-${tabId}`) {
+                        content.classList.remove('hidden');
+                        // Re-trigger reveal for new tab content
+                        content.querySelectorAll('.reveal').forEach(el => {
+                            el.classList.remove('active');
+                            setTimeout(() => el.classList.add('active'), 50);
+                        });
+                    }
+                });
+            });
+        });
+
+        // ===== FAQ Accordion =====
+        const faqToggles = document.querySelectorAll('.faq-toggle');
+        faqToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const answer = toggle.nextElementSibling;
+                const chevron = toggle.querySelector('.faq-chevron');
+                const isOpen = answer.classList.contains('open');
+
+                // Close all
+                document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+                document.querySelectorAll('.faq-chevron').forEach(c => c.classList.remove('rotated'));
+
+                // Open clicked if it was closed
+                if (!isOpen) {
+                    answer.classList.add('open');
+                    chevron.classList.add('rotated');
+                }
+            });
+        });
+
+        // ===== Counter Animation =====
+        function animateCounter(element, target, suffix = '') {
+            let current = 0;
+            const increment = target / 60;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current).toLocaleString('bn-BD') + suffix;
+            }, 20);
+        }
+
+        const stat1 = document.getElementById('stat1');
+        const stat2 = document.getElementById('stat2');
+        const stat3 = document.getElementById('stat3');
+
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(stat1, 15, ' কোটি');
+                    animateCounter(stat2, 67, '%');
+                    animateCounter(stat3, 3, ' ঘণ্টা');
+                    statsObserver.disconnect();
+                }
+            });
+        }, { threshold: 0.5 });
+
+        statsObserver.observe(stat1);
+
+        // ===== Form Submit =====
+        const form = document.getElementById('experienceForm');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            showToast('আপনার অভিজ্ঞতা সফলভাবে জমা হয়েছে। ধন্যবাদ!');
+            form.reset();
+        });
+
+        // ===== Toast =====
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMsg');
+            toastMsg.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // ===== Back to Top =====
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 500) {
+                backToTop.style.opacity = '1';
+                backToTop.style.transform = 'translateY(0)';
+                backToTop.style.pointerEvents = 'auto';
+            } else {
+                backToTop.style.opacity = '0';
+                backToTop.style.transform = 'translateY(16px)';
+                backToTop.style.pointerEvents = 'none';
+            }
+        });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ===== Navbar scroll effect =====
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.style.borderBottomColor = 'rgba(255,255,255,0.08)';
+            } else {
+                nav.style.borderBottomColor = 'rgba(255,255,255,0.03)';
+            }
+        });
+    </script>
+</body>
+</html>
